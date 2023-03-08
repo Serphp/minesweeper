@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Serphp/minesweeper/issues"
   },
-  "homepage": "https://github.com/Serphp/minesweeper#readme"
+  "homepage": "https://github.com/Serphp/minesweeper#readme",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
 }
