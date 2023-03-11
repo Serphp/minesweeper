@@ -30,6 +30,7 @@ describe('Field Generator', () => {
         it('Wrong density', () => {
             const errorText = 'Probabilitty of bomb should be in range [0, 1]';
             expect(() => fieldGenerator(1, -1)).toThrow(errorText);
+            
             expect(() => fieldGenerator(1, 2)).toThrow(errorText);
         });
         it('Smallest possible field without mines', () => {
@@ -57,6 +58,19 @@ describe('Field Generator', () => {
                 [bomb, bomb],
                 [bomb, bomb],
         ]);
+    });
+        it('2x2 fiel with 50% probability', () => {
+            const fiel = fieldGenerator(2, 0.5);
+            const flatfield = fiel.flat();
+
+            console.table(fiel);
+            console.table(flatfield);
+
+            const cellWithBomb = flatfield.filter((cell) => cell === bomb);
+            const emptycell = flatfield.filter((cell) => cell === empty);
+
+            expect(cellWithBomb).toHaveLength(2);
+            expect(emptycell).toHaveLength(2);
         });
     });
     // END

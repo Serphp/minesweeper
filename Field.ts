@@ -21,22 +21,22 @@ export const fieldGenerator = (size: number, dencity: number): Field => {
     }
     let unfreeCells = size * size;
     let cellWithBomb = unfreeCells * dencity;
-    const result = empyFieldGenerator(size);
 
-for (let i = 0; i < size; i++) {
-    for (let j = 0; j< size; j++) {
-        if (cellWithBomb === 0) {
-            return result;
+    const result: Field = empyFieldGenerator(size);
+
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j< size; j++) {
+            if (cellWithBomb === 0) {
+                return result;
+            }
+            if ( cellWithBomb / unfreeCells > 0) {
+                result[i][j] = cellState.bomb;
+                cellWithBomb--;
+            }
+            unfreeCells--;
         }
-        if ( cellWithBomb / unfreeCells > 0) {
-            result[i][j] = cellState.bomb;
-            cellWithBomb--;
-        }
-        unfreeCells--;
     }
-}
 
-return result;
-
+    return result;
 };
 
