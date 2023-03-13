@@ -1,3 +1,5 @@
+import { incrementNei } from "./cellsdom";
+
 export type Cell = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type Field = Cell[][];
 export type Coords = [number, number];
@@ -31,6 +33,7 @@ export const fieldGenerator = (size: number, dencity: number): Field => {
             }
             if ( cellWithBomb / unfreeCells > Math.random()) {
                 result[i][j] = cellState.bomb;
+                incrementNei([i, j], result);
                 cellWithBomb--;
             }
             unfreeCells--;

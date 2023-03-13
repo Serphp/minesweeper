@@ -1,6 +1,8 @@
-import { empyFieldGenerator, cellState, fieldGenerator } from "./Field";
+import { empyFieldGenerator, cellState, fieldGenerator, Cell } from "./Field";
 
 const { empty, bomb, hidden } = cellState;
+
+const cellWithBombFilter = (cell: Cell) => cell === bomb;
 
 describe('Field Generator', () => {
     describe('sempyFieldGenerator test', () => {
@@ -67,10 +69,21 @@ describe('Field Generator', () => {
             console.table(flatfield);
 
             const cellWithBomb = flatfield.filter((cell) => cell === bomb);
-            const emptycell = flatfield.filter((cell) => cell === empty);
+            const emptycell = flatfield.filter((cell) => cell === 2);
 
             expect(cellWithBomb).toHaveLength(2);
             expect(emptycell).toHaveLength(2);
+        });
+        it('Example of game = 10x10 with 1/4 mined cells (-25 mines)', () => {
+        const size = 10;
+        const mines = 25;
+
+        const probability = mines / (size * size);
+        const field = fieldGenerator(size, probability);
+
+        console.table(field);
+        const flatfield = field.flat();
+        expect(flatfield.filter(cellWithBombFilter)).toHaveLength(mines);
         });
     });
     // END
