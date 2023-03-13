@@ -29,7 +29,7 @@ export const fieldGenerator = (size: number, dencity: number): Field => {
             if (cellWithBomb === 0) {
                 return result;
             }
-            if ( cellWithBomb / unfreeCells > 0) {
+            if ( cellWithBomb / unfreeCells > Math.random()) {
                 result[i][j] = cellState.bomb;
                 cellWithBomb--;
             }
